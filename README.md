@@ -5,8 +5,8 @@ Will hopefully be the script you use all the time. :)
 
 USAGE
 =====
- ~$ backup file/folder
+ `~$ backup file/folder`
  
  or
  
- ~$ backup file/folder backup_name
+ `~$ backup file/folder backup_name`
