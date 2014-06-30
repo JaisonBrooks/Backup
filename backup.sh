@@ -9,18 +9,18 @@
 #  {-USAGE-}											 #
 # "Creates simple backup"									 #
 # |~$ backup folder/file  									 #
-# ---												 #
+#												 #
 # "Creates custom named backup"									 #
 # |~$ backup folder/file name_of_backup								 #
 #                                                          					 #
 #  {-VERSION HISTORY-}										 #
-# | v1.0 - Initial release, beta test                                                            #
+# |v1.0 - Initial release, beta test                                                             #
+# |v1.1 - Fixed param echo									 #
 #                                                                                                #
 #  {-AUTHOR-}                                                                                    #
 # | Jaison Brooks                                                                                #
 #                                                                                                #
 # ============================================================================================== #
-
 
 BACKUP_FOLDER=$1
 FOLDER_NAME=$1
@@ -56,7 +56,7 @@ if [[ -z "$1" ]]; then
 	echo "Missing folder name, try again :)"
   else
   	if [[ -z "$2" ]]; then
-    		echo "Missing param 2"
+    		#echo "Missing param 2"
     		if [[ $1 = */* ]]
 			then
 			    #'/' is in the Value
@@ -78,5 +78,4 @@ if [[ -z "$1" ]]; then
 				setupBackup
 			fi
     fi
-	
 fi
