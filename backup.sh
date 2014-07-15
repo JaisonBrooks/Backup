@@ -21,7 +21,7 @@
 # |> 1.0 | Initial release, beta test                                                           #
 # |> 1.1 | Fixed param echo                                                                     #
 # |> 1.2 | Added Verbose/Help option                                                            #
-# |> 1.3 | Included zip output, uncompressed output, improved ui                                #
+# |> 1.3 | Included zip output, improved ui                                                     #
 #                                                                                               #
 # =AUTHOR=                                                                                      #
 # |> Jaison Brooks                                                                              #
@@ -50,9 +50,13 @@ function showHelp {
 	echo "$PROG:|   - $ backup file/folder -v"
 	echo "$PROG:|   - This will create a backup and display the verbose output"
 	echo "$PROG:|"
-	echo "$PROG:| ADVANCED USUAGE"
+	echo "$PROG:| ADVANCED USAGE (alpha feature - Use w/ caution)"
 	echo "$PROG:|   - $ backup file/folder -v -z"
 	echo "$PROG:|   - Creates backup while displaying verbose and exports to a zip file"
+	echo "$PROG:|"
+	echo "$PROG:| OPENING BACKUPS"
+	echo "$PROG:|   - $ backup open"
+	echo "$PROG:|   - Opens the Backups folder from the current directory into Finder"
 	echo "$PROG:|"
 	echo "$PROG:|==========[ /HELP ]===========|"
 }
@@ -73,12 +77,18 @@ function displayOutput {
 function createBackup {
 
 	function outputToZip {
-		echo "$PROG:| Exporting files zip file"
+		echo "$PROG:| Exporting files zip file | {alpha feature} => USE W/ SLIGHT CAUTION"
+		echo ""
 		tar -czf $BACKUP_DIR/$FILE_NAME.tar.gz $BACKUP_FOLDER && cp $BACKUP_DIR/$FILE_NAME.tar.gz $BACKUP_DIR/$FILE_NAME.zip && rm -r $BACKUP_DIR/$FILE_NAME.tar.gz
+		echo ""
 	}
 	function outputToZipV {
-		echo "$PROG:| Exporting files to zip file"
+		echo "$PROG:| Exporting files to zip file | {alpha feature} => USE W/ SLIGHT CAUTION"
+		echo ""
+		echo "zip:|"
 		tar -cvzf $BACKUP_DIR/$FILE_NAME.tar.gz $BACKUP_FOLDER && cp $BACKUP_DIR/$FILE_NAME.tar.gz $BACKUP_DIR/$FILE_NAME.zip && rm -r $BACKUP_DIR/$FILE_NAME.tar.gz
+		echo "zip:|"
+		echo ""
 	}
 
 	echo "$PROG:| Backing up '$FOLDER_NAME'"
@@ -87,13 +97,19 @@ function createBackup {
 		if [[ $OUTZIP == true ]]; then
 			outputToZipV
 		else
+			echo ""
+			echo "tar:|"
 			tar -cvzf $BACKUP_DIR/$FILE_NAME.tar.gz $BACKUP_FOLDER
+			echo "tar:|"
+			echo ""
 		fi
 	else
 		if [[ $OUTZIP == true ]]; then
 			outputToZip
 		else
+			echo ""
 			tar -czf $BACKUP_DIR/$FILE_NAME.tar.gz $BACKUP_FOLDER
+			echo ""
 		fi
 	fi
   	displayOutput
@@ -109,7 +125,7 @@ function setupBackup {
 
 
 ### [ User Interaction ] ###
-echo "$PROG:|..."
+echo "$PROG:|... - ... - ... /\ ... - ... /\ ... - ... /\ ..."
 for x; do
 	if [[ $x == "-v" ]]; then
 		echo "$PROG:| Running w/ Verbose"
@@ -127,20 +143,23 @@ done
 if [[ -z "$1" ]]; then
 	echo "$PROG:| Missing folder name, try again :{"
 	  else
-	  	# if [[ -z "$2" ]]; then
-		if [[ $1 = */* ]]
-		then
-		    #'/' is in the Value
-			FOLDER_NAME=${FOLDER_NAME%"/"}
-			setupBackup
-		else
-			setupBackup
-		fi
-
-		if [[ $2 == "open" ]]
+			if [[ $1 = */* ]]
 			then
-			echo "Opening Backups folder"
-			$(open Backups/)
+			    #'/' is in the Value
+				FOLDER_NAME=${FOLDER_NAME%"/"}
+			fi
+			if [[ $1 == "open" ]]
+				then
+					echo "$PROG:| Opening current directory Backups folder"
+					$(open Backups/)
+				else
+					setupBackup
+			fi
+
+		# if [[ $2 == "open" ]]
+		# 	then
+		# 	echo "Opening Backups folder"
+		# 	$(open Backups/)
 	   			# else
 	   			# #echo "$PROG:| Its there"
 	   			# if [[ $2 = */* ]]
@@ -153,7 +172,7 @@ if [[ -z "$1" ]]; then
 				# 	FOLDER_NAME=$2
 				# 	setupBackup
 				# fi
-	   fi
+	   # fi
 fi
 
 # WILL MOVE TO TRADITIONAL OPTIONS EVENTUALLY
