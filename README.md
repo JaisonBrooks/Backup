@@ -7,24 +7,18 @@ These backups are then saved into a local folder called "Backups" where all of y
 USAGE
 ======
 Creating a simple backup
-
 `~$ backup folder/file`
 
-Creating a advanced backup w/ verbose
-
-`~$ backup folder/file -v`
-
-Create zip file backup w/ verbose
-
-`~$ backup folder/file -z -v`
+Creating a advanced backup with verbose
+`~$ backup folder/file name_of_backup -v`
 
 REVISION HISTORY
 ==================
-> 1.0 | Initial release, beta test
-> 1.1 | Fixed param echo
-> 1.2 | Added Verbose/Help option
-> 1.3 | Included zip output, improved ui
+1.0 | Initial release, beta test
+1.1 | Fixed param echo
+1.2 | Added Verbose/Help option
+1.3 | Included zip output, improved ui
 
 AUTHOR
 ======
-> Created by: Jaison Brooks
+> Jaison Brooks
