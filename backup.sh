@@ -142,6 +142,7 @@ for x; do
 done
 if [[ -z "$1" ]]; then
 	echo "$PROG:| Missing folder name, try again :{"
+	showHelp
 	  else
 			if [[ $1 = */* ]]
 			then
