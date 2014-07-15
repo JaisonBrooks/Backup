@@ -14,10 +14,13 @@ Creating a advanced backup with verbose
 
 REVISION HISTORY
 ==================
-1.0 | Initial release, beta test
-1.1 | Fixed param echo
-1.2 | Added Verbose/Help option
-1.3 | Included zip output, improved ui
+> 1.0 | Initial release, beta test
+
+> 1.1 | Fixed param echo
+
+> 1.2 | Added Verbose/Help option
+
+> 1.3 | Included zip output, improved ui
 
 AUTHOR
 ======
