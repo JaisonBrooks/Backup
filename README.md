@@ -12,8 +12,8 @@ Creating a simple backup
 Creating a advanced backup with verbose
 `~$ backup folder/file name_of_backup -v`
 
- REVISION HISTORY
- ==================
+REVISION HISTORY
+==================
 > 1.0 | Initial release, beta test
 > 1.1 | Fixed param echo
 > 1.2 | Added Verbose/Help option
